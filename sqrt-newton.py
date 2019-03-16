@@ -1,9 +1,9 @@
-def sqrt(x):
-    def sqrt_iter(guess):
+def sqrt_Newton(x):
+    def method_Newton(guess):
         if (good_enough(guess)):
             return int(guess) if (int(guess) ** 2 - x == 0) else guess
         else:
-            return sqrt_iter(improve(guess))
+            return method_Newton(improve(guess))
 
     def improve(guess):
         return average(guess, x / guess)
@@ -14,4 +14,4 @@ def sqrt(x):
     def good_enough(guess):
         return (abs(guess ** 2 - x) < 0.001)
 
-    return sqrt_iter(1.0)
+    return method_Newton(1.0)
