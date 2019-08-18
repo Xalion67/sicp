@@ -5,6 +5,7 @@
 
 ## [Задание 1.2](/first_block/1.2/expression.scm)
 Перевести выражение в префиксную форму
+
 ![equation](/first_block/1.2/expression.png)
 
 **Решение**
