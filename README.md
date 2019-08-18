@@ -3,7 +3,7 @@
 Некоторые задания не имеют смысла, если делать их на другом языке программирования,
 поэтому такие задания сделаны на нём, остальные – на Пайтоне и С++
 
-## [Задание 1.2](/first_block/1.2)
+## [Задание 1.2](/first_block/1.2/expression.scm)
 Перевести выражение в префиксную форму
 ![equation](/first_block/1.2/expression.png)
 
@@ -43,7 +43,7 @@ int sum_of_squares_of_two_top(int a, int b, int c) {
   }
 }
 ```
-## 1.4
+## [1.4](/first_block/1.4/add-with-abs.scm)
 Как работает эта процедура
 ```scm
 (define (a-plus-abs-b a b)
