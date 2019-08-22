@@ -71,16 +71,17 @@ int sum_of_squares_of_two_top(int a, int b, int c) {
 **_Язык: Пайтон_**
 ```py
 def p():
-  return p()
+    return p()
 
 
 def test(x, y):
-  if x == 0:
-    return 0
-  return y
+    if x == 0:
+        return 0
+    return y
 
 
 test(0, p())
+
 ```
 
 **_Язык: С++_**  
@@ -108,7 +109,8 @@ int main() {
 (define (p) (p))
 
 (define (test x y) 
-  ((if (= x 0) 0 y)))
+  ((if (= x 0) 0 y))
+)
 
 (test 0 (p))
 ```
