@@ -152,15 +152,59 @@ int main() {
 В итоге интерпретатор упадет от бесконечной рекурсии, потому что работает с апликативным порядком вычислений.  
 Прежде чем выполнять тело функции `new-if`, он попытается вычислить все аргументы и начнёт бесконечно вызывать функцию `sqrt-iter`
 
-## [Задание 1.7]()
+## [Задание 1.7](/chapter_1/1.7)
 Функция для вычисления корня написана чтобы объяснить процедурную абстракцию, как черный ящик и блочную структуру.
 Её первый вариант выглядит вот так
-`code`
+```
+def sqrt(x):
+    return sqrt_iter(1.0, 0.5, x)
 
-Но здесь есть недостаток: она вычисляет неправильный квадратный корень для слишком маленьких и больших чисел.  
-Это можно решить изменением функции `good_enough`. Вместо возведения догадки в квадрат, можно смотреть насколько она изменяется с каждым шагом и остановить функцию когда изменение будет слишком маленькое.  
-Тут еще про доллю от разности и тд.
-`code`
+
+def sqrt_iter(guess, previous_guess, x):
+    if good_enough(guess, previous_guess):
+        return guess
+    return sqrt_iter(improve(guess, x), guess, x)
+
+
+def good_enough(guess, previous_guess):
+    if abs((guess - previous_guess) / previous_guess) < 0.001:
+        return True
+    return False
+
+
+def improve(guess, x):
+    return average(guess, x / guess)
+
+
+def average(x, y):
+    return (x + y) / 2
+
+```
+
+Но здесь есть недостаток: она вычисляет неправильный квадратный корень для слишком маленьких и больших чисел, ещё все дополнительные функции написаны снаружи.  
+Это можно решить изменением функции `good_enough` и блочной структурой. Вместо возведения догадки в квадрат, можно смотреть насколько она изменяется с каждым шагом и остановить функцию когда изменение будет слишком маленькое.  
+Теперь функция выглядит вот так
+```
+def sqrt(x):
+    def sqrt_iter(guess, previous_guess):
+        if good_enough(guess, previous_guess):
+            return guess
+        return sqrt_iter(improve(guess), guess)
+
+    def good_enough(guess, previous_guess):
+        if abs((guess - previous_guess) / previous_guess) < 0.001:
+            return True
+        return False
+
+    def improve(guess):
+        return average(guess, x / guess)
+
+    def average(x, y):
+        return (x + y) / 2
+
+    return sqrt_iter(1.0, 0.5)
+
+```
 
 ## [Задание 1.8]()
 Метод Ньютона позволяет находить разные виды корней.  
